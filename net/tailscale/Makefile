@@ -56,7 +56,6 @@ define Package/tailscale-combined
   $(call Package/tailscale/Default)
   TITLE+= (combined)
   DEPENDS+= +ca-bundle +kmod-tun
-  PROVIDES:= tailscale tailscaled
   CONFLICTS:= tailscale tailscaled
   GO_PKG_TAGS:=ts_include_ci
 endef
