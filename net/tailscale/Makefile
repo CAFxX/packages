@@ -89,6 +89,8 @@ define Package/tailscaled/install
 endef
 
 define Package/tailscale-combined/install
+	$(call GoPackage/Package/Install/Bin,$(1))
+
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/tailscaled $(1)/usr/sbin
 	$(LN) $(1)/usr/sbin/tailscaled $(1)/usr/sbin/tailscale
