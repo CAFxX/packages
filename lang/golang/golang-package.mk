@@ -249,7 +249,9 @@ GO_PKG_INSTALL_ARGS= \
 	$(if $(filter $(GO_ARCH),mips64 mips64le),-installsuffix "$(GO_MIPS64)") \
 	$(if $(strip $(GO_PKG_GCFLAGS)),-gcflags "$(GO_PKG_GCFLAGS) $(GO_PKG_DEFAULT_GCFLAGS)") \
 	$(if $(strip $(GO_PKG_CUSTOM_LDFLAGS)),-ldflags "$(GO_PKG_CUSTOM_LDFLAGS) $(GO_PKG_DEFAULT_LDFLAGS)") \
-	$(if $(strip $(GO_PKG_TAGS)),-tags "$(GO_PKG_TAGS)")
+	$(if $(strip $(GO_PKG_TAGS)),-tags "$(GO_PKG_TAGS)") \
+	$(if $(strip $(GO_PKG_OUTFILE)),-o "$(GO_PKG_OUTFILE)")
+
 
 define GoPackage/Build/Configure
 	$(GO_GENERAL_BUILD_CONFIG_VARS) \

@@ -55,6 +55,7 @@ endef
 define Package/tailscale-combined
   GO_PKG:=tailscale.com/cmd/tailscaled
   GO_PKG_TAGS:=ts_include_ci
+  GO_PKG_OUTFILE:=tailscale-combined
   $(call Package/tailscale/Default)
   TITLE+= (combined)
   DEPENDS+= +ca-bundle +kmod-tun
@@ -90,11 +91,12 @@ define Package/tailscaled/install
 endef
 
 define Package/tailscale-combined/install
-	$(call GoPackage/Package/Install/Bin,$(GO_PKG_BUILD_BIN_DIR)/combined)
+	$(call GoPackage/Package/Install/Bin,$(GO_PKG_BUILD_BIN_DIR))
 
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/combined/tailscaled $(1)/usr/sbin
-	$(LN) $(1)/usr/sbin/tailscaled $(1)/usr/sbin/tailscale
+	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/tailscale-combined $(1)/usr/sbin
+	$(LN) $(1)/usr/sbin/tailscale-combined $(1)/usr/sbin/tailscale
+	$(LN) $(1)/usr/sbin/tailscale-combined $(1)/usr/sbin/tailscaled
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(INSTALL_BIN) ./files/tailscale.init $(1)/etc/init.d/tailscale
 	$(INSTALL_DIR) $(1)/etc/config/
