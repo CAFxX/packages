@@ -53,11 +53,11 @@ define Package/tailscale
 endef
 
 define Package/tailscale-combined
+  GO_PKG_TAGS:=ts_include_ci
   $(call Package/tailscale/Default)
   TITLE+= (combined)
   DEPENDS+= +ca-bundle +kmod-tun
   CONFLICTS:= tailscale tailscaled
-  GO_PKG_TAGS:=ts_include_ci
 endef
 
 define Package/tailscale/description
